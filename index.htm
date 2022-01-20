@@ -18,9 +18,15 @@
         // rendering the template on screen
         const container = document.getElementById("container")
         const template = document.getElementById("template-one")
-
+        // the clone node is of type document-fragement
         const clone = template.content.cloneNode(true)
         container.appendChild(clone)
+
+        const clone2 = template.content.firstElementChild.cloneNode(true)
+        clone2.addEventListener("click", (event) => {
+            console.log("evnet is", event)
+        })
+        container.appendChild(clone2)
     </script>
 </body>
 </html>
