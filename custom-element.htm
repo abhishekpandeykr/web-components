@@ -9,7 +9,18 @@
 <body>
     <div id="container">Hello World</div>
     <!-- creating a custom name -->
-    <hello-web-component></hello-web-component>
+    <hello-web-component>
+        <h3>Child element of Custom Elemement</h3>
+        <h4 slot="test">This will be placeholder for slot</h4>
+    </hello-web-component>
+
+    <!-- create a template -->
+    <template id="template">
+        <h3>Hi From Abhishek</h3>
+        <!-- Creating a slot same like ng-content -->
+        <!-- if there is only one slot we dont need to mention the name -->
+        <slot name="test"></slot>
+    </template>
 
     <script>
         class HelloWebComponent extends HTMLElement{
@@ -18,8 +29,10 @@
                 // create a shadow dom
                 const shadow = this.attachShadow({mode:"open"})
                 const heading = document.createElement("h2")
-                heading.textContent = "Hello Web component"
-                shadow.appendChild(heading)
+                const template = document.getElementById("template")
+                const clone = template.content.cloneNode(true)
+                // heading.textContent = "Hello Web component"
+                shadow.appendChild(clone)
             }
         }
         customElements.define("hello-web-component", HelloWebComponent)
